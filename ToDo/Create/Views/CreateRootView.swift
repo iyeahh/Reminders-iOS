@@ -18,7 +18,7 @@ final class CreateRootView: BaseView {
         return tf
     }()
 
-    let barView = {
+    private let barView = {
         let view = UIView()
         view.backgroundColor = #colorLiteral(red: 0.921431005, green: 0.9214526415, blue: 0.9214410186, alpha: 1)
         return view
@@ -86,23 +86,6 @@ final class CreateRootView: BaseView {
 
     private func configureTableView() {
         tableView.rowHeight = 50
-        tableView.delegate = self
-        tableView.dataSource = self
         tableView.register(CreateTableViewCell.self, forCellReuseIdentifier: CreateTableViewCell.identifier)
-    }
-}
-
-extension CreateRootView: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: CreateTableViewCell.identifier, for: indexPath) as? CreateTableViewCell else {
-            return UITableViewCell()
-        }
-
-        cell.cellTitleLabel.text = "마감일"
-        return cell
     }
 }

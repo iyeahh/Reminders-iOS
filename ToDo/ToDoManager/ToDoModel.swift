@@ -8,17 +8,16 @@
 import Foundation
 import RealmSwift
 
-final class ToDoModel: Object {
+final class ToDoTable: Object {
     @Persisted(primaryKey: true) var id: ObjectId
     @Persisted(indexed: true) var title: String
     @Persisted var memo: String?
     @Persisted var dueDate: Date?
 
-    convenience init(id: ObjectId, title: String, memo: String? = nil, dueDate: Date? = nil) {
+    convenience init(title: String, memo: String?, dueDate: Date?) {
         self.init()
-        self.id = id
         self.title = title
-        self.memo = memo
-        self.dueDate = dueDate
+        self.memo = memo ?? nil
+        self.dueDate = dueDate ?? nil
     }
 }

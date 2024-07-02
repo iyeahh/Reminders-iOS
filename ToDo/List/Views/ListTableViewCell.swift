@@ -40,4 +40,10 @@ final class ListTableViewCell: BaseTableViewCell {
             make.leading.equalToSuperview().offset(20)
         }
     }
+
+    func setData(_ data: ToDoTable) {
+        todoTitleLabel.text = data.title
+        memoLabel.text = data.memo
+        dueDateLabel.text = data.dueDate?.description
+    }
 }
