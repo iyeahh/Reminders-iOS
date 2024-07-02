@@ -12,12 +12,9 @@ class BaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        configureHierarchy()
-        configureLayout()
+        navigationController?.navigationBar.prefersLargeTitles = true
         configureView()
     }
 
-    func configureHierarchy() {}
-    func configureLayout() { }
     func configureView() { }
 }
