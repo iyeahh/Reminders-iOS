@@ -15,8 +15,8 @@ final class ListTableViewCell: BaseTableViewCell {
         return label
     }()
 
-    let memoLabel = BaseLabel()
-    let dueDateLabel = BaseLabel()
+    let memoLabel = GrayTextLabel()
+    let dueDateLabel = GrayTextLabel()
 
     override func configureHierarchy() {
         contentView.addSubview(todoTitleLabel)

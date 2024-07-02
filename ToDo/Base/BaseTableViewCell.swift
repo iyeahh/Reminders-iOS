@@ -13,6 +13,7 @@ class BaseTableViewCell: UITableViewCell {
         backgroundColor = .white
         configureHierarchy()
         configureLayout()
+        configureView()
     }
 
     @available(*, unavailable)
@@ -22,4 +23,5 @@ class BaseTableViewCell: UITableViewCell {
 
     func configureHierarchy() {}
     func configureLayout() { }
+    func configureView() { }
 }

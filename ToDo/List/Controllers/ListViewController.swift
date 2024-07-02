@@ -23,6 +23,7 @@ final class ListViewController: BaseViewController {
 
 extension ListViewController {
     @objc private func plusButtonTapped() {
-
+        let createVC = UINavigationController(rootViewController: CreateViewController())
+        navigationController?.present(createVC, animated: true)
     }
 }
