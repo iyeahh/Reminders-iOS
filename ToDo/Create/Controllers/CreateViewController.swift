@@ -87,7 +87,8 @@ extension CreateViewController: UITableViewDelegate, UITableViewDataSource {
         cell.cellTitleLabel.text = propertyList[indexPath.row]
         if indexPath.row == 0 {
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy. MM. dd."
+            dateFormatter.locale = Locale(identifier:"ko_KR")
+            dateFormatter.dateFormat = "yyyy. MM. dd (E)"
             if let date = todoModel.dueDate {
                 let str = dateFormatter.string(from: date)
                 cell.descriptionLabel.text = str
