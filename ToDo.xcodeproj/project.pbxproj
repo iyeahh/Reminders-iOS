@@ -11,6 +11,7 @@
 		7612ABA72C34193200C1AB7A /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 7612ABA52C3418D800C1AB7A /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		766EC0472C352CFE0032BD89 /* DueDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766EC0462C352CFE0032BD89 /* DueDateViewController.swift */; };
 		766EC0492C352D4A0032BD89 /* BaseViewContoller2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766EC0482C352D4A0032BD89 /* BaseViewContoller2.swift */; };
+		766EC04C2C3537140032BD89 /* TagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766EC04B2C3537140032BD89 /* TagViewController.swift */; };
 		768C2D452C33DE2F00B3C55C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768C2D442C33DE2F00B3C55C /* AppDelegate.swift */; };
 		768C2D472C33DE2F00B3C55C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768C2D462C33DE2F00B3C55C /* SceneDelegate.swift */; };
 		768C2D4E2C33DE3000B3C55C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 768C2D4D2C33DE3000B3C55C /* Assets.xcassets */; };
@@ -49,6 +50,7 @@
 /* Begin PBXFileReference section */
 		766EC0462C352CFE0032BD89 /* DueDateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DueDateViewController.swift; sourceTree = "<group>"; };
 		766EC0482C352D4A0032BD89 /* BaseViewContoller2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewContoller2.swift; sourceTree = "<group>"; };
+		766EC04B2C3537140032BD89 /* TagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagViewController.swift; sourceTree = "<group>"; };
 		768C2D412C33DE2F00B3C55C /* ToDo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		768C2D442C33DE2F00B3C55C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		768C2D462C33DE2F00B3C55C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -90,6 +92,14 @@
 				766EC0462C352CFE0032BD89 /* DueDateViewController.swift */,
 			);
 			path = DueDate;
+			sourceTree = "<group>";
+		};
+		766EC04A2C3537060032BD89 /* Tag */ = {
+			isa = PBXGroup;
+			children = (
+				766EC04B2C3537140032BD89 /* TagViewController.swift */,
+			);
+			path = Tag;
 			sourceTree = "<group>";
 		};
 		768C2D382C33DE2F00B3C55C = {
@@ -174,6 +184,7 @@
 		768C2D762C33EBBF00B3C55C /* Create */ = {
 			isa = PBXGroup;
 			children = (
+				766EC04A2C3537060032BD89 /* Tag */,
 				766EC0452C352CD70032BD89 /* DueDate */,
 				768C2D782C33EBDE00B3C55C /* Views */,
 				768C2D772C33EBD400B3C55C /* Controllers */,
@@ -307,6 +318,7 @@
 				768C2D6E2C33E43E00B3C55C /* GrayTextLabel.swift in Sources */,
 				768C2D722C33E6E900B3C55C /* ListRootView.swift in Sources */,
 				768C2D472C33DE2F00B3C55C /* SceneDelegate.swift in Sources */,
+				766EC04C2C3537140032BD89 /* TagViewController.swift in Sources */,
 				768C2D5E2C33DF3100B3C55C /* BaseView.swift in Sources */,
 				768C2D682C33E05B00B3C55C /* ReuseIdentifier.swift in Sources */,
 				768C2D6A2C33E27300B3C55C /* BaseViewController.swift in Sources */,

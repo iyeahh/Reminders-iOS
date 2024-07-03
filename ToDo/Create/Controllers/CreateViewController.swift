@@ -92,8 +92,10 @@ extension CreateViewController: UITableViewDelegate, UITableViewDataSource {
             if let date = todoModel.dueDate {
                 let str = dateFormatter.string(from: date)
                 cell.descriptionLabel.text = str
-            } else {
-                cell.descriptionLabel.text = ""
+            }
+        } else if indexPath.row == 1 {
+            if let tag = todoModel.tag, !tag.isEmpty {
+                cell.descriptionLabel.text = "#" + tag
             }
         }
         return cell
@@ -104,6 +106,10 @@ extension CreateViewController: UITableViewDelegate, UITableViewDataSource {
             let vc = DueDateViewController()
             vc.delegate = self
             navigationController?.pushViewController(vc, animated: true)
+        } else if indexPath.row == 1 {
+            let vc = TagViewController()
+            vc.delegate = self
+            navigationController?.pushViewController(vc, animated: true)
         }
     }
 }
@@ -111,6 +117,13 @@ extension CreateViewController: UITableViewDelegate, UITableViewDataSource {
 extension CreateViewController: DueDateViewControllerDelegate {
     func setDate(_ date: Date) {
         todoModel.dueDate = date
+        rootView.tableView.reloadData()
+    }
+}
+
+extension CreateViewController: TagViewControllerDelegate {
+    func setDate(_ text: String?) {
+        todoModel.tag = text
         rootView.tableView.reloadData()
     }
 }
