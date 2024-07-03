@@ -97,6 +97,10 @@ extension CreateViewController: UITableViewDelegate, UITableViewDataSource {
             if let tag = todoModel.tag, !tag.isEmpty {
                 cell.descriptionLabel.text = "#" + tag
             }
+        } else if indexPath.row == 2 {
+            if let priority = todoModel.priority {
+                cell.descriptionLabel.text = "\(priority)"
+            }
         }
         return cell
     }
@@ -108,6 +112,10 @@ extension CreateViewController: UITableViewDelegate, UITableViewDataSource {
             navigationController?.pushViewController(vc, animated: true)
         } else if indexPath.row == 1 {
             let vc = TagViewController()
+            vc.delegate = self
+            navigationController?.pushViewController(vc, animated: true)
+        } else if indexPath.row == 2 {
+            let vc = PriorityViewController()
             vc.delegate = self
             navigationController?.pushViewController(vc, animated: true)
         }
@@ -124,6 +132,13 @@ extension CreateViewController: DueDateViewControllerDelegate {
 extension CreateViewController: TagViewControllerDelegate {
     func setDate(_ text: String?) {
         todoModel.tag = text
+        rootView.tableView.reloadData()
+    }
+}
+
+extension CreateViewController: PriorityViewControllerDelegate {
+    func setDate(_ index: Int) {
+        todoModel.priority = index
         rootView.tableView.reloadData()
     }
 }
