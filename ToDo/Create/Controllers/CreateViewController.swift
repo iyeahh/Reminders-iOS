@@ -14,7 +14,11 @@ protocol CreateViewControllerDelegate: AnyObject {
 final class CreateViewController: BaseViewController {
     private let rootView = CreateRootView()
 
+    private let propertyList = ["마감일", "태그", "우선 순위", "이미지 추가"]
+
     weak var delegate: CreateViewControllerDelegate?
+
+    var todoModel = ToDoTable(title: "", content: nil, dueDate: nil, tag: nil, priority: nil)
 
     override func loadView() {
         view = rootView
@@ -72,15 +76,40 @@ extension CreateViewController: UITextViewDelegate {
 
 extension CreateViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return propertyList.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CreateTableViewCell.identifier, for: indexPath) as? CreateTableViewCell else {
             return UITableViewCell()
         }
-
-        cell.cellTitleLabel.text = "마감일"
+        cell.selectionStyle = .none
+        cell.cellTitleLabel.text = propertyList[indexPath.row]
+        if indexPath.row == 0 {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy. MM. dd."
+            if let date = todoModel.dueDate {
+                let str = dateFormatter.string(from: date)
+                cell.descriptionLabel.text = str
+            } else {
+                cell.descriptionLabel.text = ""
+            }
+        }
         return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 0 {
+            let vc = DueDateViewController()
+            vc.delegate = self
+            navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+}
+
+extension CreateViewController: DueDateViewControllerDelegate {
+    func setDate(_ date: Date) {
+        todoModel.dueDate = date
+        rootView.tableView.reloadData()
     }
 }
