@@ -11,13 +11,17 @@ import RealmSwift
 final class ToDoTable: Object {
     @Persisted(primaryKey: true) var id: ObjectId
     @Persisted(indexed: true) var title: String
-    @Persisted var memo: String?
+    @Persisted var content: String?
     @Persisted var dueDate: Date?
+    @Persisted var tag: String?
+    @Persisted var priority: Int?
 
-    convenience init(title: String, memo: String?, dueDate: Date?) {
+    convenience init(title: String, content: String?, dueDate: Date?, tag: String?, priority: Int?) {
         self.init()
         self.title = title
-        self.memo = memo ?? nil
+        self.content = content ?? nil
         self.dueDate = dueDate ?? nil
+        self.tag = tag ?? nil
+        self.priority = priority ?? 1
     }
 }

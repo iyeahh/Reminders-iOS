@@ -43,7 +43,7 @@ final class ListTableViewCell: BaseTableViewCell {
 
     func setData(_ data: ToDoTable) {
         todoTitleLabel.text = data.title
-        memoLabel.text = data.memo
+        memoLabel.text = data.content
         dueDateLabel.text = data.dueDate?.description
     }
 }

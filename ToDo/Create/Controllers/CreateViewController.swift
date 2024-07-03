@@ -14,7 +14,7 @@ protocol CreateViewControllerDelegate: AnyObject {
 final class CreateViewController: BaseViewController {
     private let rootView = CreateRootView()
 
-    var delegate: CreateViewControllerDelegate?
+    weak var delegate: CreateViewControllerDelegate?
 
     override func loadView() {
         view = rootView

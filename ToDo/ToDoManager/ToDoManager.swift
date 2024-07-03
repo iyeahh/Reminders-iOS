@@ -15,12 +15,19 @@ final class ToDoManager {
 
     private init() { }
 
-    func createMemo(title: String, memo: String? = nil, dueDate: Date? = nil) {
+    func createMemo(
+        title: String,
+        content: String? = nil,
+        dueDate: Date? = nil,
+        tag: String? = nil,
+        priority: Int? = 1
+    ) {
         let data = ToDoTable(
             title: title,
-            memo: memo,
-            dueDate: dueDate
-        )
+            content: content,
+            dueDate: dueDate,
+            tag: tag,
+            priority: priority)
 
         try! realm.write {
             realm.add(data)
