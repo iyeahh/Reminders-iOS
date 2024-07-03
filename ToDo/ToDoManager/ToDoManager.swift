@@ -17,17 +17,17 @@ final class ToDoManager {
 
     func createMemo(
         title: String,
-        content: String? = nil,
-        dueDate: Date? = nil,
-        tag: String? = nil,
-        priority: Int? = 1
+        content: String?,
+        dueDate: Date?,
+        tag: String?,
+        priority: Int?
     ) {
         let data = ToDoTable(
             title: title,
-            content: content,
-            dueDate: dueDate,
-            tag: tag,
-            priority: priority)
+            content: content ?? nil,
+            dueDate: dueDate ?? nil,
+            tag: tag ?? nil,
+            priority: priority ?? 1)
 
         try! realm.write {
             realm.add(data)

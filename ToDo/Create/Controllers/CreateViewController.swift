@@ -53,8 +53,15 @@ extension CreateViewController {
 
     @objc func addButtonTapped() {
         let title = rootView.titleTextField.text
+        let content = rootView.memoTextView.text
 
-        ToDoManager.shared.createMemo(title: title!)
+        ToDoManager.shared.createMemo(
+            title: title!,
+            content: content,
+            dueDate: todoModel.dueDate,
+            tag: todoModel.tag,
+            priority: todoModel.priority
+        )
         delegate?.createButtonTapped()
         dismiss(animated: true)
     }
