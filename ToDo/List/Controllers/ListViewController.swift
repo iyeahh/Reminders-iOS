@@ -46,7 +46,9 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
 
         let data = todoList[indexPath.row]
 
-        cell.setData(data)
+        let image = loadImageToDocument(filename: "\(data.id)")
+        print(data.id)
+        cell.setData(data, image: image)
         return cell
     }
 

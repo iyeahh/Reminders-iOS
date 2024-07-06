@@ -16,12 +16,15 @@ final class ListTableViewCell: BaseTableViewCell {
     }()
 
     let memoLabel = GrayTextLabel()
-    let dueDateLabel = GrayTextLabel()
+    let descriptionLabel = GrayTextLabel()
+
+    let photoImageView = UIImageView()
 
     override func configureHierarchy() {
         contentView.addSubview(todoTitleLabel)
         contentView.addSubview(memoLabel)
-        contentView.addSubview(dueDateLabel)
+        contentView.addSubview(descriptionLabel)
+        contentView.addSubview(photoImageView)
     }
 
     override func configureLayout() {
@@ -35,15 +38,31 @@ final class ListTableViewCell: BaseTableViewCell {
             make.leading.equalToSuperview().offset(20)
         }
 
-        dueDateLabel.snp.makeConstraints { make in
+        descriptionLabel.snp.makeConstraints { make in
             make.top.equalTo(memoLabel.snp.bottom).offset(5)
             make.leading.equalToSuperview().offset(20)
         }
+
+        photoImageView.snp.makeConstraints { make in
+            make.verticalEdges.equalToSuperview().inset(5)
+            make.trailing.equalToSuperview().inset(10)
+            make.width.equalTo(photoImageView.snp.height)
+        }
     }
 
-    func setData(_ data: ToDoTable) {
+    func setData(_ data: ToDoTable, image: UIImage?) {
         todoTitleLabel.text = data.title
         memoLabel.text = data.content
-        dueDateLabel.text = data.dueDate?.description
+        if let tag = data.tag, let dueDate = data.dueDate {
+            descriptionLabel.text = dueDate.description + " #" + tag
+        } else if let tag = data.tag {
+            descriptionLabel.text = "#" + tag
+        } else if let dueDate = data.dueDate {
+            descriptionLabel.text = dueDate.description
+        } else {
+            descriptionLabel.text = ""
+        }
+        guard let image = image else { return }
+        photoImageView.image = image
     }
 }

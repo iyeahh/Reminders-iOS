@@ -65,7 +65,15 @@ extension CreateViewController {
             tag: todoModel.tag,
             priority: todoModel.priority
         )
-        delegate?.createButtonTapped()
+
+        guard let todoModelId = ToDoManager.shared.readMemo().last?.id else {
+            return
+        }
+
+        if let photo = photo {
+            saveImageToDocument(image: photo, filename: "\(todoModelId)")
+        }
+
         dismiss(animated: true)
     }
 }
@@ -113,7 +121,13 @@ extension CreateViewController: UITableViewDelegate, UITableViewDataSource {
             }
         } else if indexPath.row == 2 {
             if let priority = todoModel.priority {
-                cell.setDate(text: "\(priority)", photo: nil)
+                if priority == 0 {
+                    cell.setDate(text: "높음", photo: nil)
+                } else if priority == 1 {
+                    cell.setDate(text: "보통", photo: nil)
+                } else {
+                    cell.setDate(text: "낮음", photo: nil)
+                }
             } else {
                 cell.setDate(text: "", photo: nil)
             }
@@ -170,7 +184,7 @@ extension CreateViewController: TagViewControllerDelegate {
 
 extension CreateViewController: PriorityViewControllerDelegate {
     func setDate(_ index: Int) {
-        todoModel.priority = index
+        todoModel.priority = index + 1
         rootView.tableView.reloadData()
     }
 }
