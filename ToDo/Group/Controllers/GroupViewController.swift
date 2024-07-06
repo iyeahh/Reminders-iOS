@@ -22,6 +22,11 @@ final class GroupViewController: BaseViewController {
         iconList = CellButton.setCellButton()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        rootView.collectionView.reloadData()
+    }
+
     private func configureCollectionView() {
         rootView.collectionView.backgroundColor =  #colorLiteral(red: 0.921431005, green: 0.9214526415, blue: 0.9214410186, alpha: 1)
         rootView.collectionView.delegate = self
@@ -47,13 +52,29 @@ extension GroupViewController: UICollectionViewDelegate, UICollectionViewDataSou
             return UICollectionViewCell()
         }
         let data = iconList[indexPath.item]
-        cell.setData(data)
+        cell.setData(data, index: indexPath.item)
         return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = ListViewController()
         vc.naviTitle = iconList[indexPath.item].title
+        if indexPath.item == 0 {
+            let array = ToDoManager.shared.todayDudDate()
+            vc.todoList = array
+        } else if indexPath.item == 1 {
+            let array = ToDoManager.shared.notTodayDueDate()
+            vc.todoList = array
+        } else if indexPath.item == 2 {
+            let array = ToDoManager.shared.readMemo()
+            vc.todoList = array
+        } else if indexPath.item == 3 {
+            let array = ToDoManager.shared.readMemo()
+            vc.todoList = array
+        } else {
+            let array = ToDoManager.shared.isCompleted()
+            vc.todoList = array
+        }
         navigationItem.backButtonTitle = ""
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -70,5 +91,6 @@ extension GroupViewController: GroupRootViewDelegate {
 
 extension GroupViewController: CreateViewControllerDelegate {
     func createButtonTapped() {
+        rootView.collectionView.reloadData()
     }
 }

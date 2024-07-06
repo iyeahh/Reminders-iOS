@@ -35,8 +35,6 @@ final class ToDoManager {
             realm.add(data)
             print("Realm Save Succeed")
         }
-
-        print(realm.configuration.fileURL)
     }
 
     func readMemo() -> Results<ToDoTable> {
@@ -60,5 +58,26 @@ final class ToDoManager {
                 update: .modified
             )
         }
+    }
+
+    func todayDudDate() -> Results<ToDoTable> {
+        let result = readMemo().where {
+            $0.dueDate == Date()
+        }
+        return result
+    }
+
+    func notTodayDueDate() -> Results<ToDoTable> {
+        let result = readMemo().where {
+            $0.dueDate != Date()
+        }
+        return result
+    }
+
+    func isCompleted() -> Results<ToDoTable> {
+        let result = readMemo().where {
+            $0.isCompleted == true
+        }
+        return result
     }
 }

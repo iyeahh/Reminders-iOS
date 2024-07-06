@@ -21,7 +21,6 @@ final class ListViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = naviTitle
-        todoList = ToDoManager.shared.readMemo()
         rootView.tableView.delegate = self
         rootView.tableView.dataSource = self
     }

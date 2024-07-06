@@ -74,6 +74,7 @@ extension CreateViewController {
             saveImageToDocument(image: photo, filename: "\(todoModelId)")
         }
 
+        delegate?.createButtonTapped()
         dismiss(animated: true)
     }
 }
