@@ -8,6 +8,10 @@
 import UIKit
 import SnapKit
 
+protocol GroupRootViewDelegate {
+    func addToDoButtonTapped()
+}
+
 final class GroupRootView: BaseView {
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout())
 
@@ -18,8 +22,8 @@ final class GroupRootView: BaseView {
         configuration.buttonSize = .large
         configuration.image = UIImage(systemName: "plus.circle.fill")
         configuration.imagePadding = 8
-        configuration.image
         button.configuration = configuration
+        button.addTarget(nil, action: #selector(addToDoButtonTapped), for: .touchUpInside)
         return button
     }()
 
@@ -31,6 +35,7 @@ final class GroupRootView: BaseView {
         return button
     }()
 
+    var delegate: GroupRootViewDelegate?
 
     func collectionViewLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewFlowLayout()
@@ -66,5 +71,9 @@ final class GroupRootView: BaseView {
 
     override func configureView() {
         backgroundColor = #colorLiteral(red: 0.921431005, green: 0.9214526415, blue: 0.9214410186, alpha: 1)
+    }
+
+    @objc private func addToDoButtonTapped() {
+        delegate?.addToDoButtonTapped()
     }
 }

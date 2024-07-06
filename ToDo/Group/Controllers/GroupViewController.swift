@@ -17,6 +17,7 @@ final class GroupViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        rootView.delegate = self
         configureCollectionView()
         iconList = CellButton.setCellButton()
     }
@@ -48,5 +49,26 @@ extension GroupViewController: UICollectionViewDelegate, UICollectionViewDataSou
         let data = iconList[indexPath.item]
         cell.setData(data)
         return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc = ListViewController()
+        vc.naviTitle = iconList[indexPath.item].title
+        navigationItem.backButtonTitle = ""
+        navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+extension GroupViewController: GroupRootViewDelegate {
+    func addToDoButtonTapped() {
+        let vc = CreateViewController()
+        vc.delegate = self
+        let navVC = UINavigationController(rootViewController: vc)
+        navigationController?.present(navVC, animated: true)
+    }
+}
+
+extension GroupViewController: CreateViewControllerDelegate {
+    func createButtonTapped() {
     }
 }

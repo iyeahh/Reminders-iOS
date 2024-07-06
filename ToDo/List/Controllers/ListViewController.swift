@@ -10,7 +10,8 @@ import RealmSwift
 
 final class ListViewController: BaseViewController {
     var todoList: Results<ToDoTable>!
-    
+    var naviTitle = ""
+
     let realm = try! Realm()
 
     private let rootView = ListRootView()
@@ -21,24 +22,15 @@ final class ListViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = naviTitle
         todoList = ToDoManager.shared.readMemo()
         rootView.tableView.delegate = self
         rootView.tableView.dataSource = self
     }
 
     override func configureView() {
-        let barButton = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(plusButtonTapped))
+        let barButton = UIBarButtonItem(image: UIImage(systemName: "ellipsis.circle"), style: .plain, target: self, action: nil)
         navigationItem.rightBarButtonItem = barButton
-        navigationItem.title = "전체"
-    }
-}
-
-extension ListViewController {
-    @objc private func plusButtonTapped() {
-        let vc = CreateViewController()
-        vc.delegate = self
-        let navVC = UINavigationController(rootViewController: vc)
-        navigationController?.present(navVC, animated: true)
     }
 }
 
@@ -63,12 +55,5 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
             ToDoManager.shared.deleteMemo(todoList[indexPath.row])
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
-    }
-}
-
-extension ListViewController: CreateViewControllerDelegate {
-    func createButtonTapped() {
-        todoList = ToDoManager.shared.readMemo()
-        rootView.tableView.reloadData()
     }
 }

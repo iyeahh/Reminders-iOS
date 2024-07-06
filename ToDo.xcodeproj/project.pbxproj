@@ -123,6 +123,7 @@
 		766EC0532C3541260032BD89 /* Group */ = {
 			isa = PBXGroup;
 			children = (
+				76D288882C38E3DB00C42DC3 /* Model */,
 				766EC0552C3541420032BD89 /* Views */,
 				766EC0542C3541310032BD89 /* Controllers */,
 			);
@@ -184,7 +185,6 @@
 		768C2D582C33DE8500B3C55C /* List */ = {
 			isa = PBXGroup;
 			children = (
-				76D288882C38E3DB00C42DC3 /* Model */,
 				768C2D5B2C33DF0E00B3C55C /* Views */,
 				768C2D5A2C33DF0600B3C55C /* Controllers */,
 			);
