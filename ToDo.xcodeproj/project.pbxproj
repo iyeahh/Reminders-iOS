@@ -13,6 +13,9 @@
 		766EC0492C352D4A0032BD89 /* BaseViewContoller2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766EC0482C352D4A0032BD89 /* BaseViewContoller2.swift */; };
 		766EC04C2C3537140032BD89 /* TagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766EC04B2C3537140032BD89 /* TagViewController.swift */; };
 		766EC0522C353B0B0032BD89 /* PriorityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766EC0512C353B0B0032BD89 /* PriorityViewController.swift */; };
+		766EC0572C3541830032BD89 /* GroupCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766EC0562C3541830032BD89 /* GroupCollectionViewCell.swift */; };
+		766EC0592C3545190032BD89 /* GroupRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766EC0582C3545190032BD89 /* GroupRootView.swift */; };
+		766EC05B2C35466A0032BD89 /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766EC05A2C35466A0032BD89 /* GroupViewController.swift */; };
 		768C2D452C33DE2F00B3C55C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768C2D442C33DE2F00B3C55C /* AppDelegate.swift */; };
 		768C2D472C33DE2F00B3C55C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768C2D462C33DE2F00B3C55C /* SceneDelegate.swift */; };
 		768C2D4E2C33DE3000B3C55C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 768C2D4D2C33DE3000B3C55C /* Assets.xcassets */; };
@@ -32,6 +35,7 @@
 		768C2D822C33F61500B3C55C /* CreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768C2D812C33F61500B3C55C /* CreateViewController.swift */; };
 		768C2D8C2C3400B200B3C55C /* ToDoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768C2D8B2C3400B200B3C55C /* ToDoModel.swift */; };
 		768C2D8E2C34015C00B3C55C /* ToDoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768C2D8D2C34015C00B3C55C /* ToDoManager.swift */; };
+		76D2888A2C38E3EC00C42DC3 /* CellButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D288892C38E3EC00C42DC3 /* CellButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -53,6 +57,9 @@
 		766EC0482C352D4A0032BD89 /* BaseViewContoller2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewContoller2.swift; sourceTree = "<group>"; };
 		766EC04B2C3537140032BD89 /* TagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagViewController.swift; sourceTree = "<group>"; };
 		766EC0512C353B0B0032BD89 /* PriorityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriorityViewController.swift; sourceTree = "<group>"; };
+		766EC0562C3541830032BD89 /* GroupCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCollectionViewCell.swift; sourceTree = "<group>"; };
+		766EC0582C3545190032BD89 /* GroupRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupRootView.swift; sourceTree = "<group>"; };
+		766EC05A2C35466A0032BD89 /* GroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
 		768C2D412C33DE2F00B3C55C /* ToDo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		768C2D442C33DE2F00B3C55C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		768C2D462C33DE2F00B3C55C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -73,6 +80,7 @@
 		768C2D812C33F61500B3C55C /* CreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateViewController.swift; sourceTree = "<group>"; };
 		768C2D8B2C3400B200B3C55C /* ToDoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoModel.swift; sourceTree = "<group>"; };
 		768C2D8D2C34015C00B3C55C /* ToDoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoManager.swift; sourceTree = "<group>"; };
+		76D288892C38E3EC00C42DC3 /* CellButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +120,32 @@
 			path = Priority;
 			sourceTree = "<group>";
 		};
+		766EC0532C3541260032BD89 /* Group */ = {
+			isa = PBXGroup;
+			children = (
+				766EC0552C3541420032BD89 /* Views */,
+				766EC0542C3541310032BD89 /* Controllers */,
+			);
+			path = Group;
+			sourceTree = "<group>";
+		};
+		766EC0542C3541310032BD89 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				766EC05A2C35466A0032BD89 /* GroupViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		766EC0552C3541420032BD89 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				766EC0562C3541830032BD89 /* GroupCollectionViewCell.swift */,
+				766EC0582C3545190032BD89 /* GroupRootView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		768C2D382C33DE2F00B3C55C = {
 			isa = PBXGroup;
 			children = (
@@ -137,6 +171,7 @@
 				768C2D862C34006100B3C55C /* ToDoManager */,
 				768C2D762C33EBBF00B3C55C /* Create */,
 				768C2D582C33DE8500B3C55C /* List */,
+				766EC0532C3541260032BD89 /* Group */,
 				768C2D442C33DE2F00B3C55C /* AppDelegate.swift */,
 				768C2D462C33DE2F00B3C55C /* SceneDelegate.swift */,
 				768C2D4D2C33DE3000B3C55C /* Assets.xcassets */,
@@ -149,6 +184,7 @@
 		768C2D582C33DE8500B3C55C /* List */ = {
 			isa = PBXGroup;
 			children = (
+				76D288882C38E3DB00C42DC3 /* Model */,
 				768C2D5B2C33DF0E00B3C55C /* Views */,
 				768C2D5A2C33DF0600B3C55C /* Controllers */,
 			);
@@ -238,6 +274,14 @@
 			path = ToDoManager;
 			sourceTree = "<group>";
 		};
+		76D288882C38E3DB00C42DC3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				76D288892C38E3EC00C42DC3 /* CellButton.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -317,11 +361,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				766EC0592C3545190032BD89 /* GroupRootView.swift in Sources */,
 				768C2D702C33E60A00B3C55C /* BaseTableViewCell.swift in Sources */,
 				768C2D7C2C33ED4600B3C55C /* WhiteBackgroundView.swift in Sources */,
 				768C2D8C2C3400B200B3C55C /* ToDoModel.swift in Sources */,
 				766EC0472C352CFE0032BD89 /* DueDateViewController.swift in Sources */,
 				766EC0522C353B0B0032BD89 /* PriorityViewController.swift in Sources */,
+				766EC05B2C35466A0032BD89 /* GroupViewController.swift in Sources */,
 				768C2D822C33F61500B3C55C /* CreateViewController.swift in Sources */,
 				766EC0492C352D4A0032BD89 /* BaseViewContoller2.swift in Sources */,
 				768C2D802C33F24A00B3C55C /* CreateTableViewCell.swift in Sources */,
@@ -330,8 +376,10 @@
 				768C2D6E2C33E43E00B3C55C /* GrayTextLabel.swift in Sources */,
 				768C2D722C33E6E900B3C55C /* ListRootView.swift in Sources */,
 				768C2D472C33DE2F00B3C55C /* SceneDelegate.swift in Sources */,
+				76D2888A2C38E3EC00C42DC3 /* CellButton.swift in Sources */,
 				766EC04C2C3537140032BD89 /* TagViewController.swift in Sources */,
 				768C2D5E2C33DF3100B3C55C /* BaseView.swift in Sources */,
+				766EC0572C3541830032BD89 /* GroupCollectionViewCell.swift in Sources */,
 				768C2D682C33E05B00B3C55C /* ReuseIdentifier.swift in Sources */,
 				768C2D6A2C33E27300B3C55C /* BaseViewController.swift in Sources */,
 				768C2D8E2C34015C00B3C55C /* ToDoManager.swift in Sources */,
