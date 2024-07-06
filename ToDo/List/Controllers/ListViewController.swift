@@ -83,7 +83,7 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
         let data = todoList[indexPath.row]
         let image = loadImageToDocument(filename: "\(data.id)")
         cell.callBackMehtod = {
-            ToDoManager.shared.updateIsCompleted(data: data)
+            ToDoTableRepository.shared.updateIsCompleted(data: data)
             tableView.reloadData()
         }
         let data1 = filterdList[indexPath.row]
@@ -103,7 +103,7 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
 
         let remove = UIContextualAction(style: .normal, title: "Remove") { [self] (UIContextualAction, UIView, success: @escaping (Bool) -> Void) in
             removeImageFromDocument(filename: "\(data.id)")
-            ToDoManager.shared.deleteMemo(filterdList[indexPath.row])
+            ToDoTableRepository.shared.deleteMemo(filterdList[indexPath.row])
             filterdList.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
             success(true)

@@ -58,7 +58,7 @@ extension CreateViewController {
         let title = rootView.titleTextField.text
         let content = rootView.memoTextView.text
 
-        ToDoManager.shared.createMemo(
+        ToDoTableRepository.shared.createMemo(
             title: title!,
             content: content,
             dueDate: todoModel.dueDate,
@@ -66,7 +66,7 @@ extension CreateViewController {
             priority: todoModel.priority
         )
 
-        guard let todoModelId = ToDoManager.shared.readMemo().last?.id else {
+        guard let todoModelId = ToDoTableRepository.shared.readMemo().last?.id else {
             return
         }
 

@@ -60,19 +60,19 @@ extension GroupViewController: UICollectionViewDelegate, UICollectionViewDataSou
         let vc = ListViewController()
         vc.naviTitle = iconList[indexPath.item].title
         if indexPath.item == 0 {
-            let array = ToDoManager.shared.todayDudDate()
+            let array = ToDoTableRepository.shared.todayDudDate()
             vc.todoList = array
         } else if indexPath.item == 1 {
-            let array = ToDoManager.shared.notTodayDueDate()
+            let array = ToDoTableRepository.shared.notTodayDueDate()
             vc.todoList = array
         } else if indexPath.item == 2 {
-            let array = ToDoManager.shared.readMemo()
+            let array = ToDoTableRepository.shared.readMemo()
             vc.todoList = array
         } else if indexPath.item == 3 {
-            let array = ToDoManager.shared.readMemo()
+            let array = ToDoTableRepository.shared.readMemo()
             vc.todoList = array
         } else {
-            let array = ToDoManager.shared.isCompleted()
+            let array = ToDoTableRepository.shared.isCompleted()
             vc.todoList = array
         }
         navigationItem.backButtonTitle = ""

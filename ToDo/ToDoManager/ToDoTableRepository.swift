@@ -8,8 +8,8 @@
 import UIKit
 import RealmSwift
 
-final class ToDoManager {
-    static let shared = ToDoManager()
+final class ToDoTableRepository {
+    static let shared = ToDoTableRepository()
 
     let realm = try! Realm()
 
@@ -31,9 +31,12 @@ final class ToDoManager {
             isCompleted: false
         )
 
-        try! realm.write {
-            realm.add(data)
-            print("Realm Save Succeed")
+        do {
+            try realm.write {
+                realm.add(data)
+            }
+        } catch {
+            print("Realm Create Error")
         }
     }
 
@@ -42,21 +45,29 @@ final class ToDoManager {
     }
 
     func deleteMemo(_ memo: ToDoTable) {
-        try! realm.write {
-            realm.delete(memo)
+        do {
+            try realm.write {
+                realm.delete(memo)
+            }
+        } catch {
+            print("Realm Delete Error")
         }
     }
 
     func updateIsCompleted(data: ToDoTable) {
         let value = data.isCompleted ? false: true
 
-        try! realm.write {
-            realm.create(
-                ToDoTable.self,
-                value: ["id": data.id,
-                        "isCompleted": value],
-                update: .modified
-            )
+        do {
+            try realm.write {
+                realm.create(
+                    ToDoTable.self,
+                    value: ["id": data.id,
+                            "isCompleted": value],
+                    update: .modified
+                )
+            }
+        } catch {
+            print("Realm Update Error")
         }
     }
 

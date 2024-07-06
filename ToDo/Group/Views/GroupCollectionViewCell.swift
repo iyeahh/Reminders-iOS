@@ -78,18 +78,18 @@ extension GroupCollectionViewCell {
         categoryLabel.text = data.title
         colorBackgroundView.tintColor = data.color
         if index == 0 {
-            let array = ToDoManager.shared.todayDudDate()
+            let array = ToDoTableRepository.shared.todayDudDate()
             countLabel.text = "\(array.count)"
         } else if index == 1 {
-            let array = ToDoManager.shared.notTodayDueDate()
+            let array = ToDoTableRepository.shared.notTodayDueDate()
             countLabel.text = "\(array.count)"
         } else if index == 2 {
-            let array = ToDoManager.shared.readMemo()
+            let array = ToDoTableRepository.shared.readMemo()
             countLabel.text = "\(array.count)"
         } else if index == 3 {
             countLabel.text = "0"
         } else {
-            let array = ToDoManager.shared.isCompleted()
+            let array = ToDoTableRepository.shared.isCompleted()
             countLabel.text = "\(array.count)"
         }
     }
