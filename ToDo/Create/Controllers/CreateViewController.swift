@@ -101,20 +101,28 @@ extension CreateViewController: UITableViewDelegate, UITableViewDataSource {
             dateFormatter.dateFormat = "yyyy. MM. dd (E)"
             if let date = todoModel.dueDate {
                 let str = dateFormatter.string(from: date)
-                cell.descriptionLabel.text = str
+                cell.setDate(text: str, photo: nil)
+            } else {
+                cell.setDate(text: "", photo: nil)
             }
         } else if indexPath.row == 1 {
             if let tag = todoModel.tag, !tag.isEmpty {
-                cell.descriptionLabel.text = "#" + tag
+                cell.setDate(text: "#" + tag, photo: nil)
+            } else {
+                cell.setDate(text: "", photo: nil)
             }
         } else if indexPath.row == 2 {
             if let priority = todoModel.priority {
-                cell.descriptionLabel.text = "\(priority)"
+                cell.setDate(text: "\(priority)", photo: nil)
+            } else {
+                cell.setDate(text: "", photo: nil)
             }
-        } else {
-            cell.descriptionLabel.isHidden = true
-            cell.photoImageView.isHidden = false
-            cell.photoImageView.image = photo
+        } else if indexPath.row == 3 {
+            if let photo = photo {
+                cell.setDate(text: "", photo: photo)
+            } else {
+                cell.setDate(text: "", photo: nil)
+            }
         }
         return cell
     }

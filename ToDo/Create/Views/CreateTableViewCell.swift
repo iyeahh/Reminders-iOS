@@ -77,4 +77,16 @@ final class CreateTableViewCell: BaseTableViewCell {
     override func configureView() {
         contentView.backgroundColor = #colorLiteral(red: 0.921431005, green: 0.9214526415, blue: 0.9214410186, alpha: 1)
     }
+
+    func setDate(text: String, photo: UIImage?) {
+        if let photo = photo {
+            descriptionLabel.isHidden = true
+            photoImageView.isHidden = false
+            photoImageView.image = photo
+        } else {
+            descriptionLabel.isHidden = false
+            photoImageView.isHidden = true
+            descriptionLabel.text = text
+        }
+    }
 }
