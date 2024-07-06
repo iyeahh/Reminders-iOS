@@ -98,6 +98,11 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = DetailViewController(todo: filterdList[indexPath.row])
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
 extension ListViewController: UISearchBarDelegate {

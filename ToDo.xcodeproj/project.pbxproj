@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		7612ABA62C3418D800C1AB7A /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7612ABA52C3418D800C1AB7A /* RealmSwift */; };
 		7612ABA72C34193200C1AB7A /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 7612ABA52C3418D800C1AB7A /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		7649F9AA2C392D7200234175 /* DetailRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7649F9A92C392D7200234175 /* DetailRootView.swift */; };
+		7649F9AC2C392F7900234175 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7649F9AB2C392F7900234175 /* DetailViewController.swift */; };
 		766EC0472C352CFE0032BD89 /* DueDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766EC0462C352CFE0032BD89 /* DueDateViewController.swift */; };
 		766EC0492C352D4A0032BD89 /* BaseViewContoller2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766EC0482C352D4A0032BD89 /* BaseViewContoller2.swift */; };
 		766EC04C2C3537140032BD89 /* TagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766EC04B2C3537140032BD89 /* TagViewController.swift */; };
@@ -54,6 +56,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7649F9A92C392D7200234175 /* DetailRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRootView.swift; sourceTree = "<group>"; };
+		7649F9AB2C392F7900234175 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		766EC0462C352CFE0032BD89 /* DueDateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DueDateViewController.swift; sourceTree = "<group>"; };
 		766EC0482C352D4A0032BD89 /* BaseViewContoller2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewContoller2.swift; sourceTree = "<group>"; };
 		766EC04B2C3537140032BD89 /* TagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagViewController.swift; sourceTree = "<group>"; };
@@ -98,6 +102,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7649F9A62C392D4100234175 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				7649F9A82C392D5D00234175 /* Views */,
+				7649F9A72C392D5200234175 /* Controllers */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		7649F9A72C392D5200234175 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				7649F9AB2C392F7900234175 /* DetailViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		7649F9A82C392D5D00234175 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7649F9A92C392D7200234175 /* DetailRootView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		766EC0452C352CD70032BD89 /* DueDate */ = {
 			isa = PBXGroup;
 			children = (
@@ -176,6 +205,7 @@
 				768C2D762C33EBBF00B3C55C /* Create */,
 				768C2D582C33DE8500B3C55C /* List */,
 				766EC0532C3541260032BD89 /* Group */,
+				7649F9A62C392D4100234175 /* Detail */,
 				768C2D442C33DE2F00B3C55C /* AppDelegate.swift */,
 				768C2D462C33DE2F00B3C55C /* SceneDelegate.swift */,
 				768C2D4D2C33DE3000B3C55C /* Assets.xcassets */,
@@ -383,11 +413,13 @@
 				766EC0592C3545190032BD89 /* GroupRootView.swift in Sources */,
 				768C2D702C33E60A00B3C55C /* BaseTableViewCell.swift in Sources */,
 				768C2D7C2C33ED4600B3C55C /* WhiteBackgroundView.swift in Sources */,
+				7649F9AA2C392D7200234175 /* DetailRootView.swift in Sources */,
 				768C2D8C2C3400B200B3C55C /* ToDoModel.swift in Sources */,
 				766EC0472C352CFE0032BD89 /* DueDateViewController.swift in Sources */,
 				766EC0522C353B0B0032BD89 /* PriorityViewController.swift in Sources */,
 				766EC05B2C35466A0032BD89 /* GroupViewController.swift in Sources */,
 				768C2D822C33F61500B3C55C /* CreateViewController.swift in Sources */,
+				7649F9AC2C392F7900234175 /* DetailViewController.swift in Sources */,
 				766EC0492C352D4A0032BD89 /* BaseViewContoller2.swift in Sources */,
 				768C2D802C33F24A00B3C55C /* CreateTableViewCell.swift in Sources */,
 				768C2D7E2C33EDAC00B3C55C /* CreateRootView.swift in Sources */,
