@@ -99,7 +99,10 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
 
+        let data = filterdList[indexPath.row]
+
         let remove = UIContextualAction(style: .normal, title: "Remove") { [self] (UIContextualAction, UIView, success: @escaping (Bool) -> Void) in
+            removeImageFromDocument(filename: "\(data.id)")
             ToDoManager.shared.deleteMemo(filterdList[indexPath.row])
             filterdList.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
