@@ -185,7 +185,7 @@ extension CreateViewController: TagViewControllerDelegate {
 
 extension CreateViewController: PriorityViewControllerDelegate {
     func setDate(_ index: Int) {
-        todoModel.priority = index + 1
+        todoModel.priority = index
         rootView.tableView.reloadData()
     }
 }

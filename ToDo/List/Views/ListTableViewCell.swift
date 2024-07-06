@@ -67,12 +67,12 @@ final class ListTableViewCell: BaseTableViewCell {
     }
 
     func setData(_ data: ToDoTable, image: UIImage?) {
-        if data.priority == 1 {
-            todoTitleLabel.text = "!" + data.title
-        } else if data.priority == 2 {
+        if data.priority == 0 {
+            todoTitleLabel.text = "!!!" + data.title
+        } else if data.priority == 1 {
             todoTitleLabel.text = "!!" + data.title
         } else {
-            todoTitleLabel.text = "!!!" + data.title
+            todoTitleLabel.text = "!" + data.title
         }
         memoLabel.text = data.content
         if let tag = data.tag, let dueDate = data.dueDate {

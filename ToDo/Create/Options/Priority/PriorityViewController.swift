@@ -18,7 +18,6 @@ final class PriorityViewController: BaseViewController2 {
 
     override func viewWillDisappear(_ animated: Bool) {
         delegate?.setDate(segement.selectedSegmentIndex)
-        print(segement.selectedSegmentIndex)
     }
 
     override func configureHierarchy() {
