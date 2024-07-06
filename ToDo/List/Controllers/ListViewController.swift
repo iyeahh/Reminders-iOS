@@ -24,6 +24,7 @@ final class ListViewController: BaseViewController {
         navigationItem.title = naviTitle
         rootView.tableView.delegate = self
         rootView.tableView.dataSource = self
+        rootView.searchBar.delegate = self
         filterdList = Array(todoList)
     }
 
@@ -96,5 +97,21 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
             ToDoManager.shared.deleteMemo(todoList[indexPath.row])
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
+    }
+}
+
+extension ListViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+
+        // 대소문자 구분 없이
+        let filter = todoList.where {
+            $0.title.contains(searchText, options: .caseInsensitive)
+        }
+
+        // 서치바가 비어있을 땐 모든 데이터가 나오게
+        let result = searchText.isEmpty ? todoList : filter
+
+        filterdList = Array(result!)
+        rootView.tableView.reloadData()
     }
 }

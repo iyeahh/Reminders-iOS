@@ -9,6 +9,12 @@ import UIKit
 import SnapKit
 
 final class ListRootView: BaseView {
+    let searchBar = {
+        let searchBar = UISearchBar()
+        searchBar.searchBarStyle = .minimal
+        return searchBar
+    }()
+
     let tableView = UITableView()
 
     override init(frame: CGRect) {
@@ -17,12 +23,19 @@ final class ListRootView: BaseView {
     }
 
     override func configureHierarchy() {
+        addSubview(searchBar)
         addSubview(tableView)
     }
 
     override func configureLayout() {
+        searchBar.snp.makeConstraints { make in
+            make.horizontalEdges.equalToSuperview().inset(20)
+            make.top.equalTo(safeAreaLayoutGuide)
+        }
+
         tableView.snp.makeConstraints { make in
-            make.edges.equalTo(safeAreaLayoutGuide)
+            make.horizontalEdges.bottom.equalTo(safeAreaLayoutGuide)
+            make.top.equalTo(searchBar.snp.bottom)
         }
     }
 
