@@ -12,8 +12,6 @@ final class ListViewController: BaseViewController {
     var todoList: Results<ToDoTable>!
     var naviTitle = ""
 
-    let realm = try! Realm()
-
     private let rootView = ListRootView()
 
     override func loadView() {
@@ -45,10 +43,14 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
         }
 
         let data = todoList[indexPath.row]
-
         let image = loadImageToDocument(filename: "\(data.id)")
-        print(data.id)
-        cell.setData(data, image: image)
+        cell.callBackMehtod = {
+            ToDoManager.shared.updateIsCompleted(data: data)
+            tableView.reloadData()
+        }
+        let data1 = todoList[indexPath.row]
+
+        cell.setData(data1, image: image)
         return cell
     }
 

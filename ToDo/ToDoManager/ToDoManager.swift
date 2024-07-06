@@ -27,12 +27,16 @@ final class ToDoManager {
             content: content ?? nil,
             dueDate: dueDate ?? nil,
             tag: tag ?? nil,
-            priority: priority ?? 1)
+            priority: priority ?? 1,
+            isCompleted: false
+        )
 
         try! realm.write {
             realm.add(data)
             print("Realm Save Succeed")
         }
+
+        print(realm.configuration.fileURL)
     }
 
     func readMemo() -> Results<ToDoTable> {
@@ -42,6 +46,19 @@ final class ToDoManager {
     func deleteMemo(_ memo: ToDoTable) {
         try! realm.write {
             realm.delete(memo)
+        }
+    }
+
+    func updateIsCompleted(data: ToDoTable) {
+        let value = data.isCompleted ? false: true
+
+        try! realm.write {
+            realm.create(
+                ToDoTable.self,
+                value: ["id": data.id,
+                        "isCompleted": value],
+                update: .modified
+            )
         }
     }
 }

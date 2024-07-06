@@ -15,13 +15,15 @@ final class ToDoTable: Object {
     @Persisted var dueDate: Date?
     @Persisted var tag: String?
     @Persisted var priority: Int?
+    @Persisted var isCompleted: Bool
 
-    convenience init(title: String, content: String?, dueDate: Date?, tag: String?, priority: Int?) {
+    convenience init(title: String, content: String?, dueDate: Date?, tag: String?, priority: Int?, isCompleted: Bool) {
         self.init()
         self.title = title
         self.content = content ?? nil
         self.dueDate = dueDate ?? nil
         self.tag = tag ?? nil
         self.priority = priority ?? 1
+        self.isCompleted = isCompleted
     }
 }

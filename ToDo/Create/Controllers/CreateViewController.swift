@@ -19,7 +19,7 @@ final class CreateViewController: BaseViewController {
 
     weak var delegate: CreateViewControllerDelegate?
 
-    var todoModel = ToDoTable(title: "", content: nil, dueDate: nil, tag: nil, priority: nil)
+    var todoModel = ToDoTable(title: "", content: nil, dueDate: nil, tag: nil, priority: nil, isCompleted: false)
 
     var photo: UIImage?
 
