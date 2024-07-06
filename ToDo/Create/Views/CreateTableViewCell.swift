@@ -31,11 +31,17 @@ final class CreateTableViewCell: BaseTableViewCell {
         return imageView
     }()
 
+    let photoImageView = {
+        let imageView = UIImageView()
+        return imageView
+    }()
+
     override func configureHierarchy() {
         contentView.addSubview(cellBackgroundView)
         contentView.addSubview(cellTitleLabel)
         contentView.addSubview(descriptionLabel)
         contentView.addSubview(cellImageView)
+        contentView.addSubview(photoImageView)
     }
 
     override func configureLayout() {
@@ -59,6 +65,12 @@ final class CreateTableViewCell: BaseTableViewCell {
         descriptionLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.trailing.equalTo(cellImageView.snp.leading)
+        }
+
+        photoImageView.snp.makeConstraints { make in
+            make.trailing.equalTo(cellImageView.snp.leading)
+            make.verticalEdges.equalToSuperview().inset(6)
+            make.width.equalTo(photoImageView.snp.height)
         }
     }
 

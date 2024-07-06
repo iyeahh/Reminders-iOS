@@ -230,9 +230,7 @@
 		768C2D762C33EBBF00B3C55C /* Create */ = {
 			isa = PBXGroup;
 			children = (
-				766EC0502C353AED0032BD89 /* Priority */,
-				766EC04A2C3537060032BD89 /* Tag */,
-				766EC0452C352CD70032BD89 /* DueDate */,
+				76D2888C2C38EF1600C42DC3 /* Options */,
 				768C2D782C33EBDE00B3C55C /* Views */,
 				768C2D772C33EBD400B3C55C /* Controllers */,
 			);
@@ -280,6 +278,16 @@
 				76D288892C38E3EC00C42DC3 /* CellButton.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		76D2888C2C38EF1600C42DC3 /* Options */ = {
+			isa = PBXGroup;
+			children = (
+				766EC0452C352CD70032BD89 /* DueDate */,
+				766EC04A2C3537060032BD89 /* Tag */,
+				766EC0502C353AED0032BD89 /* Priority */,
+			);
+			path = Options;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

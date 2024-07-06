@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import PhotosUI
 
 protocol CreateViewControllerDelegate: AnyObject {
     func createButtonTapped()
@@ -19,6 +20,8 @@ final class CreateViewController: BaseViewController {
     weak var delegate: CreateViewControllerDelegate?
 
     var todoModel = ToDoTable(title: "", content: nil, dueDate: nil, tag: nil, priority: nil)
+
+    var photo: UIImage?
 
     override func loadView() {
         view = rootView
@@ -108,6 +111,10 @@ extension CreateViewController: UITableViewDelegate, UITableViewDataSource {
             if let priority = todoModel.priority {
                 cell.descriptionLabel.text = "\(priority)"
             }
+        } else {
+            cell.descriptionLabel.isHidden = true
+            cell.photoImageView.isHidden = false
+            cell.photoImageView.image = photo
         }
         return cell
     }
@@ -125,6 +132,16 @@ extension CreateViewController: UITableViewDelegate, UITableViewDataSource {
             let vc = PriorityViewController()
             vc.delegate = self
             navigationController?.pushViewController(vc, animated: true)
+        } else {
+            let picker = {
+                var configuration = PHPickerConfiguration()
+                configuration.selectionLimit = 1
+                configuration.filter = .images
+                let picker = PHPickerViewController(configuration: configuration)
+                return picker
+            }()
+            picker.delegate = self
+            present(picker, animated: true)
         }
     }
 }
@@ -147,5 +164,22 @@ extension CreateViewController: PriorityViewControllerDelegate {
     func setDate(_ index: Int) {
         todoModel.priority = index
         rootView.tableView.reloadData()
+    }
+}
+
+extension CreateViewController: PHPickerViewControllerDelegate {
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+
+        picker.dismiss(animated: true)
+
+        if let itemProvider = results.first?.itemProvider,
+           itemProvider.canLoadObject(ofClass: UIImage.self) {
+            itemProvider.loadObject(ofClass: UIImage.self) { image, error in
+                DispatchQueue.main.async {
+                    self.photo = image as? UIImage
+                    self.rootView.tableView.reloadData()
+                }
+            }
+        }
     }
 }
