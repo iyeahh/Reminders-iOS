@@ -92,16 +92,23 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
 
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            ToDoManager.shared.deleteMemo(todoList[indexPath.row])
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        }
-    }
-
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = DetailViewController(todo: filterdList[indexPath.row])
         navigationController?.pushViewController(vc, animated: true)
+    }
+
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+
+        let remove = UIContextualAction(style: .normal, title: "Remove") { [self] (UIContextualAction, UIView, success: @escaping (Bool) -> Void) in
+            ToDoManager.shared.deleteMemo(filterdList[indexPath.row])
+            filterdList.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            success(true)
+        }
+        remove.backgroundColor = UIColor.red
+        remove.title = "삭제"
+
+        return UISwipeActionsConfiguration(actions:[remove])
     }
 }
 
