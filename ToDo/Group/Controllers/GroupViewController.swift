@@ -90,7 +90,7 @@ extension GroupViewController: GroupRootViewDelegate {
 }
 
 extension GroupViewController: CreateViewControllerDelegate {
-    func createButtonTapped() {
+    func createButtonTapped(todo: ToDoTable) {
         rootView.collectionView.reloadData()
     }
 }

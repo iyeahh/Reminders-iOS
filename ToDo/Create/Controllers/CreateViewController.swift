@@ -7,9 +7,10 @@
 
 import UIKit
 import PhotosUI
+import RealmSwift
 
 protocol CreateViewControllerDelegate: AnyObject {
-    func createButtonTapped()
+    func createButtonTapped(todo: ToDoTable)
 }
 
 final class CreateViewController: BaseViewController {
@@ -18,6 +19,8 @@ final class CreateViewController: BaseViewController {
     private let propertyList = ["마감일", "태그", "우선 순위", "이미지 추가"]
 
     weak var delegate: CreateViewControllerDelegate?
+
+    var id: ObjectId?
 
     var todoModel = ToDoTable(title: "", content: nil, dueDate: nil, tag: nil, priority: nil, isCompleted: false)
 
@@ -29,23 +32,41 @@ final class CreateViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureDelegate()
+        configureText()
+    }
+
+    override func configureView() {
+        navigationController?.navigationBar.prefersLargeTitles = false
+
+        let leftBarButton = UIBarButtonItem(title: "취소", style: .plain, target: self, action: #selector(cancelButtonTapped))
+
+        if let id = id {
+            let rightBarButton = UIBarButtonItem(title: "수정", style: .plain, target: self, action: #selector(addButtonTapped))
+            navigationItem.rightBarButtonItem = rightBarButton
+            navigationItem.title = "할 일 수정"
+        } else {
+            let rightBarButton = UIBarButtonItem(title: "추가", style: .plain, target: self, action: #selector(addButtonTapped))
+            navigationItem.rightBarButtonItem = rightBarButton
+            navigationItem.title = "새로운 할 일"
+        }
+
+        navigationItem.leftBarButtonItem = leftBarButton
+        navigationItem.rightBarButtonItem?.isEnabled = false
+    }
+
+    private func configureDelegate() {
         rootView.titleTextField.delegate = self
         rootView.memoTextView.delegate = self
         rootView.tableView.delegate = self
         rootView.tableView.dataSource = self
     }
 
-    override func configureView() {
-        navigationItem.title = "새로운 할 일"
-        navigationController?.navigationBar.prefersLargeTitles = false
-
-        let leftBarButton = UIBarButtonItem(title: "취소", style: .plain, target: self, action: #selector(cancelButtonTapped))
-
-        let rightBarButton = UIBarButtonItem(title: "추가", style: .plain, target: self, action: #selector(addButtonTapped))
-
-        navigationItem.leftBarButtonItem = leftBarButton
-        navigationItem.rightBarButtonItem = rightBarButton
-        navigationItem.rightBarButtonItem?.isEnabled = false
+    private func configureText() {
+        if todoModel.title != "" {
+            rootView.titleTextField.text = todoModel.title
+            rootView.memoTextView.text = todoModel.content
+        }
     }
 }
 
@@ -58,23 +79,37 @@ extension CreateViewController {
         let title = rootView.titleTextField.text
         let content = rootView.memoTextView.text
 
-        ToDoTableRepository.shared.createMemo(
-            title: title!,
-            content: content,
-            dueDate: todoModel.dueDate,
-            tag: todoModel.tag,
-            priority: todoModel.priority
-        )
+        if let id = id {
+            ToDoTableRepository.shared.update(
+                id: id,
+                title: title!,
+                content: content,
+                dueDate: todoModel.dueDate,
+                tag: todoModel.tag,
+                priority: todoModel.priority
+            )
+            if let photo = photo {
+                saveImageToDocument(image: photo, filename: "\(id)")
+            }
+        } else {
+            ToDoTableRepository.shared.createMemo(
+                title: title!,
+                content: content,
+                dueDate: todoModel.dueDate,
+                tag: todoModel.tag,
+                priority: todoModel.priority
+            )
 
-        guard let todoModelId = ToDoTableRepository.shared.readMemo().last?.id else {
-            return
+            guard let todoModelId = ToDoTableRepository.shared.readMemo().last?.id else {
+                return
+            }
+
+            if let photo = photo {
+                saveImageToDocument(image: photo, filename: "\(todoModelId)")
+            }
         }
 
-        if let photo = photo {
-            saveImageToDocument(image: photo, filename: "\(todoModelId)")
-        }
-
-        delegate?.createButtonTapped()
+        delegate?.createButtonTapped(todo: todoModel)
         dismiss(animated: true)
     }
 }

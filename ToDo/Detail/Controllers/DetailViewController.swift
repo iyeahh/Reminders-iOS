@@ -10,10 +10,10 @@ import UIKit
 final class DetailViewController: BaseViewController {
     let rootView = DetailRootView()
 
-    var todo: ToDoTable
+    var todoModel: ToDoTable
 
     init(todo: ToDoTable) {
-        self.todo = todo
+        self.todoModel = todo
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -27,8 +27,10 @@ final class DetailViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        rootView.delegate = self
+        navigationController?.navigationBar.prefersLargeTitles = false
 
-        if todo.isCompleted {
+        if todoModel.isCompleted {
             let barButton = UIBarButtonItem(image: UIImage(systemName: "checkmark.circle.fill"), style: .plain, target: nil, action: nil)
             navigationItem.rightBarButtonItem = barButton
         } else {
@@ -36,18 +38,35 @@ final class DetailViewController: BaseViewController {
             navigationItem.rightBarButtonItem = barButton
         }
 
-        rootView.titleLabel.text = todo.title
-        rootView.contentLabel.text = todo.content
-        rootView.dueDateLabel.text = todo.dueDate?.description
-        rootView.tagLabel.text = todo.tag
-        rootView.photoImageView.image = loadImageToDocument(filename: "\(todo.id)")
+        rootView.titleLabel.text = todoModel.title
+        rootView.contentLabel.text = todoModel.content
+        rootView.dueDateLabel.text = todoModel.dueDate?.description
+        rootView.tagLabel.text = todoModel.tag
+        rootView.photoImageView.image = loadImageToDocument(filename: "\(todoModel.id)")
 
-        if todo.priority == 0 {
+        if todoModel.priority == 0 {
             rootView.priorityLabel.text = "높음"
-        } else if todo.priority == 1 {
+        } else if todoModel.priority == 1 {
             rootView.priorityLabel.text = "보통"
         } else {
             rootView.priorityLabel.text = "낮음"
         }
+    }
+}
+
+extension DetailViewController: DetailRootViewDelegate {
+    func editButtonTapped() {
+        let vc = CreateViewController()
+        vc.delegate = self
+        vc.id = todoModel.id
+        vc.todoModel = todoModel
+        let navVC = UINavigationController(rootViewController: vc)
+        navigationController?.present(navVC, animated: true)
+    }
+}
+
+extension DetailViewController: CreateViewControllerDelegate {
+    func createButtonTapped(todo: ToDoTable) {
+        todoModel = todo
     }
 }

@@ -8,6 +8,10 @@
 import UIKit
 import SnapKit
 
+protocol DetailRootViewDelegate: AnyObject {
+    func editButtonTapped()
+}
+
 final class DetailRootView: BaseView {
     let titleLabel = UILabel()
     let contentLabel = UILabel()
@@ -22,8 +26,11 @@ final class DetailRootView: BaseView {
         button.setTitleColor(.white, for: .normal)
         button.layer.masksToBounds = true
         button.layer.cornerRadius = 10
+        button.addTarget(nil, action: #selector(editButtonTapped), for: .touchUpInside)
         return button
     }()
+
+    weak var delegate: DetailRootViewDelegate?
 
     override func configureHierarchy() {
         addSubview(titleLabel)
@@ -31,8 +38,8 @@ final class DetailRootView: BaseView {
         addSubview(dueDateLabel)
         addSubview(tagLabel)
         addSubview(priorityLabel)
-        addSubview(photoImageView)
         addSubview(editButton)
+        addSubview(photoImageView)
     }
 
     override func configureLayout() {
@@ -69,7 +76,11 @@ final class DetailRootView: BaseView {
         photoImageView.snp.makeConstraints { make in
             make.top.equalTo(priorityLabel.snp.bottom).offset(10)
             make.horizontalEdges.equalToSuperview().inset(10)
-            make.bottom.equalTo(editButton.snp.top).inset(10)
+            make.height.equalTo(photoImageView.snp.width)
         }
+    }
+
+    @objc func editButtonTapped() {
+        delegate?.editButtonTapped()
     }
 }

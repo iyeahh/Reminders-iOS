@@ -67,6 +67,32 @@ final class ToDoTableRepository {
                 )
             }
         } catch {
+            print("Realm Update isCompleted Error")
+        }
+    }
+
+    func update(id: ObjectId,
+                title: String,
+                content: String?,
+                dueDate: Date?,
+                tag: String?,
+                priority: Int?
+    ) {
+        do {
+            try realm.write {
+                realm.create(
+                    ToDoTable.self,
+                    value: ["id": id,
+                            "title": title,
+                            "content": content,
+                            "dueDate": dueDate,
+                            "tag": tag,
+                            "priority": priority
+                           ],
+                    update: .modified
+                )
+            }
+        } catch {
             print("Realm Update Error")
         }
     }
