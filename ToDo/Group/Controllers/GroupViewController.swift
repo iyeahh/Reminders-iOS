@@ -99,5 +99,6 @@ extension GroupViewController: GroupRootViewDelegate {
 extension GroupViewController: CreateViewControllerDelegate {
     func createButtonTapped(todo: ToDoTable) {
         rootView.collectionView.reloadData()
+        view.makeToast("할 일이 저장되었어요.")
     }
 }
