@@ -67,6 +67,8 @@ final class ListTableViewCell: BaseTableViewCell {
     }
 
     func setData(_ data: ToDoTable, image: UIImage?) {
+        var date = ""
+
         if data.priority == 0 {
             todoTitleLabel.text = "!!!" + data.title
         } else if data.priority == 1 {
@@ -75,12 +77,20 @@ final class ListTableViewCell: BaseTableViewCell {
             todoTitleLabel.text = "!" + data.title
         }
         memoLabel.text = data.content
-        if let tag = data.tag, let dueDate = data.dueDate {
-            descriptionLabel.text = dueDate.description + " #" + tag
+
+        if let validDate = data.dueDate {
+            let dateFormatter = DateFormatter()
+            dateFormatter.locale = Locale(identifier:"ko_KR")
+            dateFormatter.dateFormat = "yyyy. MM. dd (E)"
+            date = dateFormatter.string(from: validDate)
+        }
+
+        if let tag = data.tag, let _ = data.dueDate {
+            descriptionLabel.text = date + " #" + tag
         } else if let tag = data.tag {
             descriptionLabel.text = "#" + tag
         } else if let dueDate = data.dueDate {
-            descriptionLabel.text = dueDate.description
+            descriptionLabel.text = date
         } else {
             descriptionLabel.text = ""
         }
