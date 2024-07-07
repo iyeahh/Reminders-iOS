@@ -84,6 +84,15 @@ final class ListTableViewCell: BaseTableViewCell {
         } else {
             descriptionLabel.text = ""
         }
+
+        if let tag = data.tag {
+            let fullText = descriptionLabel.text ?? ""
+            let attribtuedString = NSMutableAttributedString(string: fullText)
+            let range = (fullText as NSString).range(of: "#" + tag)
+            attribtuedString.addAttribute(.foregroundColor, value: UIColor.link, range: range)
+            descriptionLabel.attributedText = attribtuedString
+        }
+
         if data.isCompleted {
             completedButton.setImage(UIImage(systemName: "checkmark.circle.fill"), for: .normal)
         } else {
