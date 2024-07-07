@@ -126,7 +126,12 @@ extension CreateViewController: UITextFieldDelegate {
 }
 
 extension CreateViewController: UITextViewDelegate {
-
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.text == "메모" {
+            textView.text = ""
+            textView.textColor = .black
+        }
+    }
 }
 
 extension CreateViewController: UITableViewDelegate, UITableViewDataSource {
