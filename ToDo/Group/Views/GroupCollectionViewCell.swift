@@ -87,7 +87,8 @@ extension GroupCollectionViewCell {
             let array = ToDoTableRepository.shared.readMemo()
             countLabel.text = "\(array.count)"
         } else if index == 3 {
-            countLabel.text = "0"
+            let array = ToDoTableRepository.shared.isFlagged()
+            countLabel.text = "\(array.count)"
         } else {
             let array = ToDoTableRepository.shared.isCompleted()
             countLabel.text = "\(array.count)"

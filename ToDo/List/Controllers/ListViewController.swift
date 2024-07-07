@@ -113,6 +113,19 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
 
         return UISwipeActionsConfiguration(actions:[remove])
     }
+
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let data = filterdList[indexPath.row]
+
+        let flag = UIContextualAction(style: .normal, title: "Flagged") { [self] (UIContextualAction, UIView, success: @escaping (Bool) -> Void) in
+            ToDoTableRepository.shared.updateIsFlagged(data: data)
+            success(true)
+        }
+        flag.backgroundColor = UIColor.orange
+        flag.image = UIImage(systemName: "flag")
+
+        return UISwipeActionsConfiguration(actions:[flag])
+    }
 }
 
 extension ListViewController: UISearchBarDelegate {

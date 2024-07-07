@@ -22,7 +22,7 @@ final class CreateViewController: BaseViewController {
 
     var id: ObjectId?
 
-    var todoModel = ToDoTable(title: "", content: nil, dueDate: nil, tag: nil, priority: nil, isCompleted: false)
+    var todoModel = ToDoTable(title: "", content: nil, dueDate: nil, tag: nil, priority: nil, isCompleted: false, isFlagged: false)
 
     var photo: UIImage?
 

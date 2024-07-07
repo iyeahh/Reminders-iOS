@@ -16,8 +16,9 @@ final class ToDoTable: Object {
     @Persisted var tag: String?
     @Persisted var priority: Int?
     @Persisted var isCompleted: Bool
+    @Persisted var isFlagged: Bool
 
-    convenience init(title: String, content: String?, dueDate: Date?, tag: String?, priority: Int?, isCompleted: Bool) {
+    convenience init(title: String, content: String?, dueDate: Date?, tag: String?, priority: Int?, isCompleted: Bool, isFlagged: Bool) {
         self.init()
         self.title = title
         self.content = content ?? nil
@@ -25,5 +26,6 @@ final class ToDoTable: Object {
         self.tag = tag ?? nil
         self.priority = priority ?? 1
         self.isCompleted = isCompleted
+        self.isFlagged = isFlagged
     }
 }

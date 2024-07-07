@@ -69,7 +69,7 @@ extension GroupViewController: UICollectionViewDelegate, UICollectionViewDataSou
             let array = ToDoTableRepository.shared.readMemo()
             vc.todoList = array
         } else if indexPath.item == 3 {
-            let array = ToDoTableRepository.shared.readMemo()
+            let array = ToDoTableRepository.shared.isFlagged()
             vc.todoList = array
         } else {
             let array = ToDoTableRepository.shared.isCompleted()

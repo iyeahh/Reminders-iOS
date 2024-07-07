@@ -28,7 +28,8 @@ final class ToDoTableRepository {
             dueDate: dueDate ?? nil,
             tag: tag ?? nil,
             priority: priority ?? 1,
-            isCompleted: false
+            isCompleted: false,
+            isFlagged: false
         )
 
         do {
@@ -68,6 +69,23 @@ final class ToDoTableRepository {
             }
         } catch {
             print("Realm Update isCompleted Error")
+        }
+    }
+
+    func updateIsFlagged(data: ToDoTable) {
+        let value = data.isFlagged ? false: true
+
+        do {
+            try realm.write {
+                realm.create(
+                    ToDoTable.self,
+                    value: ["id": data.id,
+                            "isFlagged": value],
+                    update: .modified
+                )
+            }
+        } catch {
+            print("Realm Update isFlagged Error")
         }
     }
 
@@ -114,6 +132,13 @@ final class ToDoTableRepository {
     func isCompleted() -> Results<ToDoTable> {
         let result = readMemo().where {
             $0.isCompleted == true
+        }
+        return result
+    }
+
+    func isFlagged() -> Results<ToDoTable> {
+        let result = readMemo().where {
+            $0.isFlagged == true
         }
         return result
     }
