@@ -116,17 +116,17 @@ final class ToDoTableRepository {
     }
 
     func todayDudDate() -> Results<ToDoTable> {
-        let result = readMemo().where {
-            $0.dueDate == Date()
-        }
-        return result
+        let start = Calendar.current.startOfDay(for: Date())
+        let end: Date = Calendar.current.date(byAdding: .day, value: 1, to: start) ?? Date()
+        let predicate = NSPredicate(format: "dueDate >= %@ && dueDate < %@", start as NSDate, end as NSDate)
+        return readMemo().filter(predicate)
     }
 
-    func notTodayDueDate() -> Results<ToDoTable> {
-        let result = readMemo().where {
-            $0.dueDate != Date()
-        }
-        return result
+    func expectedDueDate() -> Results<ToDoTable> {
+        let start = Calendar.current.startOfDay(for: Date())
+        let end: Date = Calendar.current.date(byAdding: .day, value: 1, to: start) ?? Date()
+        let predicate = NSPredicate(format: "dueDate > %@", end as NSDate)
+        return readMemo().filter(predicate)
     }
 
     func isCompleted() -> Results<ToDoTable> {

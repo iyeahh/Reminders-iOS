@@ -81,7 +81,7 @@ extension GroupCollectionViewCell {
             let array = ToDoTableRepository.shared.todayDudDate()
             countLabel.text = "\(array.count)"
         } else if index == 1 {
-            let array = ToDoTableRepository.shared.notTodayDueDate()
+            let array = ToDoTableRepository.shared.expectedDueDate()
             countLabel.text = "\(array.count)"
         } else if index == 2 {
             let array = ToDoTableRepository.shared.readMemo()

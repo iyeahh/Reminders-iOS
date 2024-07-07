@@ -37,8 +37,15 @@ final class GroupViewController: BaseViewController {
     override func configureView() {
         navigationItem.title = "전체"
 
-        let barButton = UIBarButtonItem(image: UIImage(systemName: "ellipsis.circle"), style: .plain, target: self, action: nil)
-        navigationItem.rightBarButtonItem = barButton
+        let rightBarButton = UIBarButtonItem(image: UIImage(systemName: "ellipsis.circle"), style: .plain, target: self, action: nil)
+        let leftBarButton = UIBarButtonItem(image: UIImage(systemName: "calendar"), style: .plain, target: self, action: #selector(calendarButtonTapped))
+        navigationItem.rightBarButtonItem = rightBarButton
+        navigationItem.leftBarButtonItem = leftBarButton
+    }
+
+    @objc func calendarButtonTapped() {
+        let vc = CalendarViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 
@@ -63,7 +70,7 @@ extension GroupViewController: UICollectionViewDelegate, UICollectionViewDataSou
             let array = ToDoTableRepository.shared.todayDudDate()
             vc.todoList = array
         } else if indexPath.item == 1 {
-            let array = ToDoTableRepository.shared.notTodayDueDate()
+            let array = ToDoTableRepository.shared.expectedDueDate()
             vc.todoList = array
         } else if indexPath.item == 2 {
             let array = ToDoTableRepository.shared.readMemo()
