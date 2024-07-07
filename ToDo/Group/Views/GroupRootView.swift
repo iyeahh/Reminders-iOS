@@ -19,7 +19,7 @@ final class GroupRootView: BaseView {
         let button = UIButton()
         var configuration = UIButton.Configuration.plain()
         configuration.title = "새로운 할 일"
-        configuration.buttonSize = .large
+        configuration.buttonSize = .small
         configuration.image = UIImage(systemName: "plus.circle.fill")
         configuration.imagePadding = 8
         button.configuration = configuration
@@ -49,9 +49,9 @@ final class GroupRootView: BaseView {
     }
 
     override func configureHierarchy() {
-        addSubview(collectionView)
         addSubview(addToDoButton)
         addSubview(addListButton)
+        addSubview(collectionView)
     }
 
     override func configureLayout() {
