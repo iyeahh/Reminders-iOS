@@ -47,6 +47,14 @@ final class CalendarViewController: BaseViewController2 {
     private func configrueFSCalendar() {
         calendar.delegate = self
         calendar.dataSource = self
+
+        let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(swipeEvent(_:)))
+        swipeUp.direction = .up
+        self.view.addGestureRecognizer(swipeUp)
+
+        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(swipeEvent(_:)))
+        swipeDown.direction = .down
+        self.view.addGestureRecognizer(swipeDown)
     }
 
     private func configureTableView() {
@@ -54,6 +62,15 @@ final class CalendarViewController: BaseViewController2 {
         tableView.dataSource = self
         tableView.rowHeight = 70
         tableView.register(ListTableViewCell.self, forCellReuseIdentifier: ListTableViewCell.identifier)
+    }
+
+    @objc func swipeEvent(_ swipe: UISwipeGestureRecognizer) {
+        if swipe.direction == .up {
+            calendar.scope = .week
+        }
+        else if swipe.direction == .down {
+            calendar.scope = .month
+        }
     }
 }
 
