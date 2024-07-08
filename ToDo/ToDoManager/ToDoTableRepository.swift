@@ -15,6 +15,10 @@ final class ToDoTableRepository {
 
     private init() { }
 
+    func detectRealmURL() {
+        print(realm.configuration.fileURL ?? "")
+    }
+
     func createMemo(
         title: String,
         content: String?,

@@ -73,7 +73,7 @@ extension GroupCollectionViewCell {
         }
     }
 
-    func setData(_ data: CellButton, index: Int) {
+    func setIconData(_ data: CellButton, index: Int) {
         colorBackgroundView.image = data.image
         categoryLabel.text = data.title
         colorBackgroundView.tintColor = data.color
@@ -93,5 +93,10 @@ extension GroupCollectionViewCell {
             let array = ToDoTableRepository.shared.isCompleted()
             countLabel.text = "\(array.count)"
         }
+    }
+
+    func setTypeData(_ data: ToDoType) {
+        categoryLabel.text = data.name
+        countLabel.text = "\(TypeRepository.shared.fetchTypeName(data.name).count)"
     }
 }

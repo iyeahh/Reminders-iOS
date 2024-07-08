@@ -8,6 +8,14 @@
 import Foundation
 import RealmSwift
 
+final class ToDoType: Object {
+    @Persisted(primaryKey: true) var id: ObjectId
+    @Persisted var name: String
+    @Persisted var regDate: Date
+    // 1:n ⭐️
+    @Persisted var detail: List<ToDoTable>
+}
+
 final class ToDoTable: Object {
     @Persisted(primaryKey: true) var id: ObjectId
     @Persisted(indexed: true) var title: String

@@ -23,6 +23,8 @@ final class CreateViewController: BaseViewController {
 
     var id: ObjectId?
 
+    var todoType: ToDoType?
+
     var todoModel = ToDoTable(title: "", content: nil, dueDate: nil, tag: nil, priority: nil, isCompleted: false, isFlagged: false)
 
     var photo: UIImage?
@@ -41,6 +43,13 @@ final class CreateViewController: BaseViewController {
         navigationController?.navigationBar.prefersLargeTitles = false
 
         let leftBarButton = UIBarButtonItem(title: "취소", style: .plain, target: self, action: #selector(cancelButtonTapped))
+
+        if let todoType = todoType {
+            let rightBarButton = UIBarButtonItem(title: "추가", style: .plain, target: self, action: #selector(addButtonTapped))
+            navigationItem.rightBarButtonItem = rightBarButton
+            navigationItem.title = todoType.name
+            return
+        }
 
         if let id = id {
             let rightBarButton = UIBarButtonItem(title: "수정", style: .plain, target: self, action: #selector(addButtonTapped))
@@ -79,6 +88,20 @@ extension CreateViewController {
     @objc func addButtonTapped() {
         let title = rootView.titleTextField.text
         let content = rootView.memoTextView.text
+
+        if let todoType = todoType {
+            let data = ToDoTable(title: title!,
+                                 content: content,
+                                 dueDate: todoModel.dueDate,
+                                 tag: todoModel.tag,
+                                 priority: todoModel.priority,
+                                 isCompleted: false,
+                                 isFlagged: false
+            )
+            TypeRepository.shared.createItem(data, type: todoType)
+            delegate?.createButtonTapped(todo: todoModel)
+            dismiss(animated: true)
+        }
 
         if let id = id {
             ToDoTableRepository.shared.update(
