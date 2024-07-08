@@ -10,6 +10,7 @@ import SnapKit
 
 protocol GroupRootViewDelegate {
     func addToDoButtonTapped()
+    func searchButtonTapped()
 }
 
 final class GroupRootView: BaseView {
@@ -29,9 +30,10 @@ final class GroupRootView: BaseView {
 
     var addListButton = {
         let button = UIButton()
-        button.setTitle("목록 추가", for: .normal)
+        button.setTitle("검색", for: .normal)
         button.setTitleColor(.link, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 15)
+        button.addTarget(nil, action: #selector(searchButtonTapped), for: .touchUpInside)
         return button
     }()
 
@@ -75,5 +77,9 @@ final class GroupRootView: BaseView {
 
     @objc private func addToDoButtonTapped() {
         delegate?.addToDoButtonTapped()
+    }
+
+    @objc private func searchButtonTapped() {
+        delegate?.searchButtonTapped()
     }
 }

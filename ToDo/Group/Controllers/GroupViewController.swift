@@ -116,6 +116,11 @@ extension GroupViewController: UICollectionViewDelegate, UICollectionViewDataSou
 }
 
 extension GroupViewController: GroupRootViewDelegate {
+    func searchButtonTapped() {
+        let vc = SearchViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
     func addToDoButtonTapped() {
         let vc = CreateViewController()
         vc.delegate = self

@@ -26,6 +26,9 @@ final class ToDoTable: Object {
     @Persisted var isCompleted: Bool
     @Persisted var isFlagged: Bool
 
+    @Persisted(originProperty: "detail")
+    var type: LinkingObjects<ToDoType>
+
     convenience init(title: String, content: String?, dueDate: Date?, tag: String?, priority: Int?, isCompleted: Bool, isFlagged: Bool) {
         self.init()
         self.title = title
