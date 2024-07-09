@@ -44,6 +44,8 @@
 		768C2D8E2C34015C00B3C55C /* ToDoTableRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768C2D8D2C34015C00B3C55C /* ToDoTableRepository.swift */; };
 		76D2888A2C38E3EC00C42DC3 /* CellButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D288892C38E3EC00C42DC3 /* CellButton.swift */; };
 		76D288912C390AF600C42DC3 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D288902C390AF600C42DC3 /* UIViewController+.swift */; };
+		76D342F02C3D3615007095FA /* DueDateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D342EF2C3D3615007095FA /* DueDateViewModel.swift */; };
+		76D342F32C3D36A9007095FA /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D342F22C3D36A9007095FA /* Observable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -95,6 +97,8 @@
 		768C2D8D2C34015C00B3C55C /* ToDoTableRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoTableRepository.swift; sourceTree = "<group>"; };
 		76D288892C38E3EC00C42DC3 /* CellButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellButton.swift; sourceTree = "<group>"; };
 		76D288902C390AF600C42DC3 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
+		76D342EF2C3D3615007095FA /* DueDateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DueDateViewModel.swift; sourceTree = "<group>"; };
+		76D342F22C3D36A9007095FA /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +152,7 @@
 		766EC0452C352CD70032BD89 /* DueDate */ = {
 			isa = PBXGroup;
 			children = (
+				76D342EF2C3D3615007095FA /* DueDateViewModel.swift */,
 				766EC0462C352CFE0032BD89 /* DueDateViewController.swift */,
 			);
 			path = DueDate;
@@ -216,6 +221,7 @@
 		768C2D432C33DE2F00B3C55C /* ToDo */ = {
 			isa = PBXGroup;
 			children = (
+				76D342F12C3D3693007095FA /* Helper */,
 				76D2888F2C390AE700C42DC3 /* Extension */,
 				768C2D662C33E03E00B3C55C /* Protocol */,
 				768C2D5C2C33DF2700B3C55C /* Base */,
@@ -352,6 +358,14 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		76D342F12C3D3693007095FA /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				76D342F22C3D36A9007095FA /* Observable.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -451,12 +465,14 @@
 				768C2D802C33F24A00B3C55C /* CreateTableViewCell.swift in Sources */,
 				7649F9C62C3A66E200234175 /* CalendarViewController.swift in Sources */,
 				768C2D7E2C33EDAC00B3C55C /* CreateRootView.swift in Sources */,
+				76D342F32C3D36A9007095FA /* Observable.swift in Sources */,
 				768C2D452C33DE2F00B3C55C /* AppDelegate.swift in Sources */,
 				768C2D6E2C33E43E00B3C55C /* GrayTextLabel.swift in Sources */,
 				768C2D722C33E6E900B3C55C /* ListRootView.swift in Sources */,
 				768C2D472C33DE2F00B3C55C /* SceneDelegate.swift in Sources */,
 				76D2888A2C38E3EC00C42DC3 /* CellButton.swift in Sources */,
 				766EC04C2C3537140032BD89 /* TagViewController.swift in Sources */,
+				76D342F02C3D3615007095FA /* DueDateViewModel.swift in Sources */,
 				76D288912C390AF600C42DC3 /* UIViewController+.swift in Sources */,
 				768C2D5E2C33DF3100B3C55C /* BaseView.swift in Sources */,
 				766EC0572C3541830032BD89 /* GroupCollectionViewCell.swift in Sources */,

@@ -15,7 +15,24 @@ protocol DueDateViewControllerDelegate: AnyObject {
 final class DueDateViewController: BaseViewController2 {
     let datePicker = UIDatePicker()
 
+    let descriptionLabel = {
+        let label = UILabel()
+        label.backgroundColor = .white
+        label.textAlignment = .center
+        return label
+    }()
+
     weak var delegate: DueDateViewControllerDelegate?
+
+    let viewModel = DueDateViewModel()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        datePicker.addTarget(self, action: #selector(datePickerValueChanged), for: .valueChanged)
+        viewModel.outputLable.bind { value in
+            self.descriptionLabel.text = value
+        }
+    }
 
     override func viewWillDisappear(_ animated: Bool) {
         delegate?.setDate(datePicker.date)
@@ -23,11 +40,19 @@ final class DueDateViewController: BaseViewController2 {
 
     override func configureHierarchy() {
         view.addSubview(datePicker)
+        view.addSubview(descriptionLabel)
     }
 
     override func configureLayout() {
         datePicker.snp.makeConstraints { make in
-            make.centerX.centerY.equalToSuperview()
+            make.horizontalEdges.top.equalTo(view.safeAreaLayoutGuide)
+            make.height.equalTo(datePicker.snp.width)
+        }
+
+        descriptionLabel.snp.makeConstraints { make in
+            make.horizontalEdges.equalToSuperview()
+            make.height.equalTo(50)
+            make.top.equalTo(datePicker.snp.bottom).offset(10)
         }
     }
 
@@ -35,4 +60,9 @@ final class DueDateViewController: BaseViewController2 {
         datePicker.preferredDatePickerStyle = .inline
         datePicker.datePickerMode = .date
     }
+
+    @objc private func datePickerValueChanged(_ sender: UIDatePicker) {
+        viewModel.inputDatePicker.value = sender.date
+    }
 }
+
